@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4717589280224277412}
   - component: {fileID: 611758367390867700}
   - component: {fileID: 8088389099895361272}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 126
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4717589280224277412
 Transform:
@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: 9101468945186098830}
   - component: {fileID: 585057347522841053}
   - component: {fileID: 5034313233343998589}
-  m_Layer: 0
+  - component: {fileID: -714251727991637364}
+  m_Layer: 7
   m_Name: Item_Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,3 +167,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-714251727991637364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7636619679039896588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a802d727c9a286a408a63573cf777094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: c279de44d7a45f641ab78b09551ed58b, type: 2}
