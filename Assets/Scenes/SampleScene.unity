@@ -429,6 +429,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4328415369559348052, guid: 9dfd18f5b8533e343bfe72f7c550223b, type: 3}
   m_PrefabInstance: {fileID: 72194344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &93788171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 93788172}
+  m_Layer: 6
+  m_Name: DropPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &93788172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93788171}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1831825918}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188216962
 GameObject:
   m_ObjectHideFlags: 0
@@ -4562,6 +4593,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 937569184}
+  - {fileID: 93788172}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1831825919
@@ -4585,6 +4617,7 @@ MonoBehaviour:
   minLook: -65
   maxLook: 65
   lookSensitivity: 0.1
+  canLook: 1
 --- !u!114 &1831825920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4600,6 +4633,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   condition: {fileID: 0}
   itemData: {fileID: 0}
+  dropPosition: {fileID: 93788172}
 --- !u!114 &1831825921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4674,7 +4708,19 @@ MonoBehaviour:
     m_ActionId: 0a4f8cdf-d1f1-4b24-acdd-290d871d09a1
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831825919}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b5905dbb-fe71-4326-a99a-ca09aaf58f71
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
@@ -5788,6 +5834,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e20fcb8795ac64490ae0bf6d8af31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slots: []
+  inventoryWindow: {fileID: 2104133430}
+  slotPanel: {fileID: 714302083}
+  dropPosition: {fileID: 0}
+  selectedItemName: {fileID: 536579737}
+  selectedItemDescription: {fileID: 711855617}
+  selectedStatName: {fileID: 1115838560}
+  selectedStatValue: {fileID: 1542970715}
+  useButton: {fileID: 1949810694}
+  equipButton: {fileID: 2027079628}
+  unequipButton: {fileID: 1006562813}
+  dropButton: {fileID: 1945649884}
 --- !u!1001 &1913121629598237238
 PrefabInstance:
   m_ObjectHideFlags: 0

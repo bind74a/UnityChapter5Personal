@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private float camCurXRot;
     public float lookSensitivity;
     private Vector2 mouseDelta;
+    public bool canLook = true;
 
+    public Action inventory;
     private Rigidbody rigid;
 
     private void Awake()
@@ -41,7 +44,10 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        CameraLook();
+        if (canLook)//마우스 커서가 잠길때만 (인벤토리창이 활성화 안됄때만)
+        {
+            CameraLook();//카메라 시야 메서드
+        }
     }
     /// <summary>
     /// 캐릭터 움직임 적용 메서드
@@ -118,6 +124,28 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+    /// <summary>
+    /// 인벤토리 열기
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            inventory?.Invoke();//델리게이트로 전달받은 Toggle 함수 실행
+            ToggleCursor();
+        }
+    }
+    /// <summary>
+    /// 마우스 커서 잠금 매서드
+    /// </summary>
+    void ToggleCursor()
+    {
+        bool toggle = Cursor.lockState == CursorLockMode.Locked;//커서가 사용불가능 할때 true
+        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;//toggle이 (true 일때 None / false일때 Locked) 삼항연산자
+        canLook = !toggle;//여기서 반대값이 설정돼면서 canLook true 일때 마우스커서가 잠긴다
+    }
+
     /// <summary>
     /// 위에 레이캐스트를 디버그 레이로 표기 한것
     /// </summary>
