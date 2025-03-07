@@ -24,10 +24,11 @@ public class UIInventory : MonoBehaviour
     private PlayerController controller;//플레이어 컨트롤 정보
     private PlayerCondition condition;//플레이어 컨지션 정보
 
-
     //인벤토리 안 정보
     ItemData selecteditem;//인벤토리 슬롯의 정보
     int selecteditemIndex = 0;//인벤토리 슬롯 번호
+
+    int curEquipIndex;//장착시 해당아이템의 슬롯 번호
 
     // Start is called before the first frame update
     void Start()
@@ -201,7 +202,7 @@ public class UIInventory : MonoBehaviour
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
-        for(int i=0; i < selecteditem.Consumables.Length; i++)//아이템 소비한개수만큼 작동
+        for(int i=0; i < selecteditem.Consumables.Length; i++)//아이템 변화값 만큼
         {
             selectedStatName.text += selecteditem.Consumables[i].type.ToString() + "\n";
             selectedStatValue.text += selecteditem.Consumables[i].value.ToString() + "\n";
@@ -232,8 +233,8 @@ public class UIInventory : MonoBehaviour
                         break;
                 }
             }
+            RemoveSelectedItem();
         }
-        RemoveSelectedItem();
     }
 
     /// <summary>
@@ -262,5 +263,42 @@ public class UIInventory : MonoBehaviour
         }
 
         UpdateUI();
+    }
+
+    /// <summary>
+    /// 장착하기 버튼
+    /// </summary>
+    public void OnEquipButton()
+    {
+        if (slots[curEquipIndex].equipped)//지정한 슬롯의 아이템이 장착이가능한가?
+        {
+            //UnEquip
+            Debug.Log(curEquipIndex);
+            UnEquip(curEquipIndex);
+        }
+
+        slots[selecteditemIndex].equipped = true;
+        curEquipIndex = selecteditemIndex;
+        CharacterManager.Instance.Player.equip.EquipNew(selecteditem);
+        UpdateUI();
+
+        Selectitem(selecteditemIndex);
+    }
+
+    void UnEquip(int index)
+    {
+        slots[index].equipped = false;
+        CharacterManager.Instance.Player.equip.UnEquip();
+        UpdateUI();
+
+        if(selecteditemIndex == index)
+        {
+            Selectitem(selecteditemIndex);
+        }
+    }
+
+    public void OnUnEquipButton()
+    {
+        UnEquip(selecteditemIndex);
     }
 }

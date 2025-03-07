@@ -2681,7 +2681,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1006562816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2104133435}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnUnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1006562816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4573,6 +4585,7 @@ GameObject:
   - component: {fileID: 1831825919}
   - component: {fileID: 1831825924}
   - component: {fileID: 1831825925}
+  - component: {fileID: 1831825926}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -4633,6 +4646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   condition: {fileID: 0}
+  equip: {fileID: 0}
   itemData: {fileID: 0}
   dropPosition: {fileID: 93788172}
 --- !u!114 &1831825921
@@ -4725,7 +4739,19 @@ MonoBehaviour:
     m_ActionId: b5905dbb-fe71-4326-a99a-ca09aaf58f71
     m_ActionName: Player/Inventory[/Keyboard/tab]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1831825926}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: OnAttackInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eb16a218-60b2-414e-89f0-ee3d829c0a84
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -4832,6 +4858,20 @@ MonoBehaviour:
     m_Bits: 128
   curInteractGameObject: {fileID: 0}
   promptText: {fileID: 628842598}
+--- !u!114 &1831825926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831825917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b458d3d7363a514b963e6da245c7c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curEquip: {fileID: 0}
+  equipParent: {fileID: 1951504347}
 --- !u!1 &1892325531
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,9 +5298,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1951504347}
   - component: {fileID: 1951504349}
-  - component: {fileID: 1951504348}
   m_Layer: 6
-  m_Name: Camera
+  m_Name: EquipCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5281,14 +5320,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 937569184}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1951504348
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951504346}
-  m_Enabled: 1
 --- !u!20 &1951504349
 Camera:
   m_ObjectHideFlags: 0
@@ -5599,7 +5630,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2027079631}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2104133435}
+        m_TargetAssemblyTypeName: UIInventory, Assembly-CSharp
+        m_MethodName: OnEquipButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2027079631
 MonoBehaviour:
   m_ObjectHideFlags: 0

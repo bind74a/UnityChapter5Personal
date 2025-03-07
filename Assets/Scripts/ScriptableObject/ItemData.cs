@@ -23,7 +23,7 @@ public class ItemDataConsumable
     public float value; //소비 아이템 사용 변화값 
 }
 
-[CreateAssetMenu(fileName ="Item",menuName = "New Item")]//아이템 데이터 생성 옵션 메뉴창에추가 
+[CreateAssetMenu(fileName = "Item", menuName = "New Item")]//아이템 데이터 생성 옵션 메뉴창에추가 
 
 public class ItemData : ScriptableObject
 {
@@ -39,5 +39,8 @@ public class ItemData : ScriptableObject
     public int maxStackAmount;//아이템 묶음 최대 개수
 
     [Header("Consumable")]
-    public ItemDataConsumable[] Consumables;//아이템 다중 사용 배열
+    public ItemDataConsumable[] Consumables;//아이템 회복 수치
+
+    [Header("Equip")]
+    public GameObject equipPrefab;
 }
