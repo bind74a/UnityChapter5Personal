@@ -24,6 +24,11 @@ public class UIInventory : MonoBehaviour
     private PlayerController controller;//플레이어 컨트롤 정보
     private PlayerCondition condition;//플레이어 컨지션 정보
 
+
+    //인벤토리 안 정보
+    ItemData selecteditem;//인벤토리 슬롯의 정보
+    int selecteditemIndex = 0;//인벤토리 슬롯 번호
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,7 +139,7 @@ public class UIInventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] != null)
+            if (slots[i].item != null)
             {
                 slots[i].Set();//슬롯이 비어있을때 아이템 등록
             }
@@ -177,5 +182,85 @@ public class UIInventory : MonoBehaviour
     {
         Instantiate(data.dropPrefab, dropPosition.position, Quaternion.Euler(Vector3.one * Random.value * 360));
         //먹은 프리펩을 복제하고 360도 랜덤하게 회전하면서 떨어지게 한다 
+    }
+
+    /// <summary>
+    /// 선택한 아이템의 슬롯의 정보
+    /// </summary>
+    /// <param name="index"></param>
+    public void Selectitem(int index)
+    {
+        if (slots[index].item == null) return;
+
+        selecteditem = slots[index].item; //가져온 숫자로 슬롯의 번호와 연동된 아이템 정보를 selecteditem변수에 넣는다
+        selecteditemIndex = index;
+
+        selectedItemName.text = selecteditem.displayName;//이름 텍스트에 아이템이름 정보 보내기
+        selectedItemDescription.text = selecteditem.description;//설명 텍스트에 아이템 설명 정보 보내기
+
+        selectedStatName.text = string.Empty;
+        selectedStatValue.text = string.Empty;
+
+        for(int i=0; i < selecteditem.Consumables.Length; i++)//아이템 소비한개수만큼 작동
+        {
+            selectedStatName.text += selecteditem.Consumables[i].type.ToString() + "\n";
+            selectedStatValue.text += selecteditem.Consumables[i].value.ToString() + "\n";
+        }
+
+        useButton.SetActive(selecteditem.type == ItemType.Consumable);//아이템이 소비아일템일경우에만 버튼 활성화
+        equipButton.SetActive(selecteditem.type == ItemType.Equipable && !slots[index].equipped);//아이템이 장비아이템이고 아이템의 equipped 값이 false 일때
+        unequipButton.SetActive(selecteditem.type == ItemType.Equipable && slots[index].equipped);//아이템이 장비아이템이고 아이템의 equipped 값이 true 일때
+        dropButton.SetActive(true);
+    }
+
+    /// <summary>
+    /// 사용하기 버튼
+    /// </summary>
+    public void OnUseButton()
+    {
+        if(selecteditem.type == ItemType.Consumable)
+        {
+            for(int i = 0; i < selecteditem.Consumables.Length; i++)
+            {
+                switch (selecteditem.Consumables[i].type)
+                {
+                    case ConsumableType.Health:
+                        condition.Heal(selecteditem.Consumables[i].value);
+                        break;
+                    case ConsumableType.Hunger:
+                        condition.Eat(selecteditem.Consumables[i].value);
+                        break;
+                }
+            }
+        }
+        RemoveSelectedItem();
+    }
+
+    /// <summary>
+    /// 버리기 버튼
+    /// </summary>
+    public void OnDropButton()
+    {
+        ThorwItem(selecteditem);
+        RemoveSelectedItem();
+    }
+
+    /// <summary>
+    /// 버린 아이템 인벤토리에서 제거
+    /// </summary>
+    void RemoveSelectedItem()
+    {
+        slots[selecteditemIndex].quantity--;
+
+        if (slots[selecteditemIndex].quantity <= 0)//아이템의 개수가 0이거나 그보다 아래면 
+        {
+            //아이템의 정보 초기화
+            selecteditem = null;
+            slots[selecteditemIndex].item = null;
+            selecteditemIndex = -1;
+            ClearSelctedItemWindow();
+        }
+
+        UpdateUI();
     }
 }
