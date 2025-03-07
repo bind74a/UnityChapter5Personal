@@ -42,5 +42,5 @@ public class ItemData : ScriptableObject
     public ItemDataConsumable[] Consumables;//아이템 회복 수치
 
     [Header("Equip")]
-    public GameObject equipPrefab;
+    public GameObject equipPrefab;//장비할 아이템 프리펩 연결
 }

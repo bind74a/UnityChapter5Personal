@@ -67,4 +67,20 @@ public class PlayerCondition : MonoBehaviour , IDamagalbe
         health.Subtract(damage);
         onTakeDamage?.Invoke();//(onTakeDamage) 델리게이트 변수에 들어온 함수 실행 
     }
+
+    /// <summary>
+    /// 행동시 스테미나 소모
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <returns></returns>
+    public bool UseStamina(float amount)
+    {
+        if(stamina.curValue - amount < 0f)
+        {
+            return false;
+        }
+
+        stamina.Subtract(amount);
+        return true;
+    }
 }
