@@ -26,7 +26,7 @@ public class ItemSlot : MonoBehaviour
 
     private void OnEnable()//오브젝트 활성화
     {
-        outline.enabled = enabled;//아이템 창착시 슬롯 선택 효과(outline의 활성화를 enabled의 bool 값으로 정한다)
+        outline.enabled = equipped;//아이템 창착시 슬롯 선택 효과(outline의 활성화를 enabled의 bool 값으로 정한다)
     }
 
     public void Set()
@@ -43,7 +43,7 @@ public class ItemSlot : MonoBehaviour
         //아웃라인 방어코드
         if(outline != null)
         {
-            outline.enabled = enabled;
+            outline.enabled = equipped;
         }
     }
 
