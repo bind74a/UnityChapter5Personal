@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Diagnostics;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIInventory : MonoBehaviour
@@ -23,6 +25,8 @@ public class UIInventory : MonoBehaviour
 
     private PlayerController controller;//플레이어 컨트롤 정보
     private PlayerCondition condition;//플레이어 컨지션 정보
+
+    BuffItem buffItem;
 
     //인벤토리 안 정보
     ItemData selecteditem;//인벤토리 슬롯의 정보
@@ -231,6 +235,11 @@ public class UIInventory : MonoBehaviour
                     case ConsumableType.Hunger:
                         condition.Eat(selecteditem.Consumables[i].value);
                         break;
+                    case ConsumableType.Speed:
+                        //buffItem = selecteditem.GetComponent<BuffItem>();
+                        buffItem = selecteditem.dropPrefab.GetComponent<BuffItem>();
+                        buffItem.SetBuff(selecteditem.Consumables[i].value, selecteditem.Consumables[i].time);
+                        break;
                 }
             }
             RemoveSelectedItem();
@@ -273,7 +282,6 @@ public class UIInventory : MonoBehaviour
         if (slots[curEquipIndex].equipped)//지정한 슬롯의 아이템이 장착이가능한가?
         {
             //UnEquip
-            Debug.Log(curEquipIndex);
             UnEquip(curEquipIndex);
         }
 

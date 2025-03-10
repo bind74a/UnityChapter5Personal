@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     public Action inventory;
     private Rigidbody rigid;
 
+
+    //public Action buff;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //buff?.Invoke();
         Cursor.lockState = CursorLockMode.Locked; //게임 시작시 마우스 커서가 보이지안게된다
     }
 

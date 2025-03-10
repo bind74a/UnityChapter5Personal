@@ -13,14 +13,16 @@ public enum ItemType//아이템 종류
 public enum ConsumableType//소비 아이템 종류
 {
     Health,//체력 회복 아이템
-    Hunger//매고픔 회복 아이템
+    Hunger,//매고픔 회복 아이템
+    Speed//버프 아이템
 }
 
 [Serializable]
 public class ItemDataConsumable
 {
     public ConsumableType type;//소비 아이템 종류
-    public float value; //소비 아이템 사용 변화값 
+    public float value; //소비 아이템 사용 변화값
+    public float time;
 }
 
 [CreateAssetMenu(fileName = "Item", menuName = "New Item")]//아이템 데이터 생성 옵션 메뉴창에추가 
