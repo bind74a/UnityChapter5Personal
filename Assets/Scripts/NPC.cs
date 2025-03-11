@@ -206,7 +206,7 @@ public class NPC : MonoBehaviour, IDamagalbe
         return angle < fieldOfView * 0.5f;//fieldOfView 는 120도 0.5를 곱해서 60도 오른쪽 왼쪽 60도씩이기때문에 원래 설정 데로 120도이다
     }
 
-    public void TakePhysicaIDamage(int damage)
+    public void TakePhysicaIDamage(int damage)//공격 하는곳에서 호출 (숙제?)
     {
         health -= damage;
         if (health <= 0)

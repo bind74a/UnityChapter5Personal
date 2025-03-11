@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EquipTool : Equip
@@ -58,6 +59,7 @@ public class EquipTool : Equip
             {
                 resurce.Gather(hit.point, hit.normal);//Gather 에게 레이케스트의 감지된 위치값이랑 방향값 보내기
             }
+            //if(hit.collider.TryGetComponent())
         }
     }
 }
